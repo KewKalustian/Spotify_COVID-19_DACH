@@ -10,11 +10,11 @@ id_s <- sample(id, replace = F)
 # only retrieve audio features for 100 tracks at once.
 
 
-Sys.setenv(SPOTIFY_CLIENT_ID = "fe4f5d1c644d41d88696db36070e8fb2")
+Sys.setenv(SPOTIFY_CLIENT_ID = "PLEASE ENTER HERE YOUR ID")
 
 # Developer secret
 
-Sys.setenv(SPOTIFY_CLIENT_SECRET = "6bc156b76eec4d9e97720ef38d8e02e6")
+Sys.setenv(SPOTIFY_CLIENT_SECRET = "PLEASE ENTER HERE YOUR CLIENT SECRET")
 
 # Generating an access token to use Spotify’s API
 
