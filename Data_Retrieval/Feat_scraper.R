@@ -1,3 +1,42 @@
+remove(list = ls(all = T)); gc(T,T,T)
+
+################
+### Packages ###
+################
+
+# Generating a neat function to load all desired packages (x).
+
+load_packages <- function(x){
+  
+  # Object which contains the desired packages (x) as long as they are not already 
+  # installed. 
+  
+  inst.packages <- x[!x %in% installed.packages()]
+  
+  # Generating a for-loop.
+  
+  for (i in inst.packages) {install.packages(i, dependencies = T)}
+  
+  sapply(x, require, character = T)}
+
+# Finally, using the just generated function to load and/or install the 
+# following desired packages.
+
+desired.packages <- c(# Tidy coding paradigm
+                      "tidyverse", "magrittr", 
+                      # Data import
+                      "readr", "rvest", "spotifyr",
+                      # Date specific data wrangling
+                      "lubridate")
+
+
+load_packages(desired.packages) 
+
+
+################
+### Scraping ###
+################
+
 # Extracting the Spotify IDs from a given data.frame (e.g., "DE_Tracks")
 # to retrieve the audio features.
 id <- unique(DE_Tracks$track_id)
