@@ -42,9 +42,7 @@ DACH_charts <- na.omit(DACH_charts)
 # Creating a new dataframe
 # 
 df_ml <- DACH_charts %>% 
-  
-  #add_count(track_id) %>%   
-  
+
   # Selecting track_id, stream_count, country, and chart_position as extrinsic 
   # features and Spotify's audio features as song-intrinsic characteristics 
   
