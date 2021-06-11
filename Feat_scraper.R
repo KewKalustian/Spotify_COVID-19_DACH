@@ -22,7 +22,7 @@ token <- get_spotify_access_token(Sys.getenv("SPOTIFY_CLIENT_ID"),
                                   Sys.getenv("SPOTIFY_CLIENT_SECRET"))
 
 Feat_scraper <- function(x) {
-  # omitting progress info
+  # omitting warnings
   base::options(warn =-1) 
   # assigning length of an ID vector to a proxy object   
   entire <- length(x)
