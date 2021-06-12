@@ -100,8 +100,6 @@ print(eigenvalue)
 
 ind_coord$clust <- as.factor(as.numeric(ind_coord$clust))
 
-#gedanken über labels machen
-
 Dim.1 <- ind_coord$Dim.1
 
 Dim.2 <- ind_coord$Dim.2
