@@ -1,3 +1,14 @@
+
+library(parallel)
+library(parallelMap)
+
+library(vip)
+library(ModelMetrics)
+
+
+library(pdp)
+
+
 # Selecting model variables
 
 mod_df <- df_ml  %>% 
@@ -56,9 +67,6 @@ set.seed(3271, sample.kind = "Rounding")
 train <- sample_frac(DACH_train, 0.2)
 
 start_time <- Sys.time()
-
-library(parallel)
-library(parallelMap)
 
 parallelStartSocket(cpus = detectCores())
 
@@ -150,16 +158,9 @@ ggplot(data= imp_values, aes( x = reorder(Variable, Importance), y = Importance,
   layout+
   coord_flip()
 
-ggsave("Importance2.png", path = "~/Desktop/R_Projects/Spotify_DACH/Plots", 
-       width = 12.8, height = 7.2, dpi = 320)
-
-
 # ################## #
 # Partial Dependence #
 # ################## #
-
-
-library(pdp)
 
 # Pred/classification function
 custom_pred <- function(object, newdata) {
