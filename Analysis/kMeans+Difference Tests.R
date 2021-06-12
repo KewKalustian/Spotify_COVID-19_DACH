@@ -23,7 +23,20 @@ df_ml_km_k <- df_ml %>%
                  tempo_rescaled) %>% 
   distinct() %>% ungroup()
 
-###
+### Plotting layout
+
+layout <- theme_bw(base_size = 14) +
+  theme(axis.title.y = element_text(size = 14),
+        axis.title.x = element_text(size = 14),
+        axis.text.x = element_text(vjust = 0.5),
+        legend.position = "top",
+        legend.key = element_rect(color = "white"),
+        legend.background = element_rect(fill = "white",
+                                         linetype = "solid",
+                                         color = "#bdbdbd"),
+        plot.margin = unit(c(.33,.33,.66,.33), "cm"))
+
+
 
 set.seed(123, sample.kind = "Rounding")
 
@@ -38,17 +51,8 @@ fviz_gap_stat(gap_stat,
               maxSE = list(method="Tibs2001SEmax", SE.factor =1))+
   labs(x = "\nNumber of Clusters" , y = "Gap Statistic (k)\n" , title = "", 
        subtitle = "") + 
-  # Layout
-  theme_bw(base_size = 14) +
-  theme(axis.title.y = element_text(size = 14),
-        axis.title.x = element_text(size = 14),
-        axis.text.x = element_text(vjust = 0.5),
-        legend.position = "top",
-        legend.key = element_rect(color = "white"),
-        legend.background = element_rect(fill = "white",
-                                         linetype = "solid",
-                                         color = "#bdbdbd"),
-        plot.margin = unit(c(.33,.33,.66,.33), "cm"))
+  layout
+ 
 
 # 4 Clusters seem reasonable.
 
