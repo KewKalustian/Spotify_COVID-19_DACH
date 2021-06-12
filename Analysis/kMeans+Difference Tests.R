@@ -135,9 +135,9 @@ text3d(x = -0.5,y =  c(.53, .63, .73, .83), z = 1, names(temp), col = I(cols))
 Mood_cluster <- df_ml %>% 
   group_by(country, track_id, stream_count, Pandemic) %>% 
   mutate(mood_clust_fct = 
-         recode_factor(mood_clust_fct,  '1' = "Moderate Arousal-Potential neg Emotionality major" , #rot
-                                        '2' = "Higher Arousal-Potential pos Emotionality minor", #lila
-                                        '3' = "Higher Arousal-Potential pos Emotionality major", #gelb
+         recode_factor(mood_clust_fct,  '1' = "Moderate Arousal-Potential neg Emotionality major" ,
+                                        '2' = "Higher Arousal-Potential pos Emotionality minor",
+                                        '3' = "Higher Arousal-Potential pos Emotionality major",
                                         '4' = "Moderate Arousal-Potential neg Emotionality minor")) 
 
 
@@ -153,9 +153,7 @@ Mood_cluster <- df_ml %>%
   
   
 
-M1 <- Mood_cluster1%>% 
-#group_by(mood_clust_fct, country, Pandemic, track_id) %>% 
-#summarize(streams = median(stream_count)) %>% 
+M1 <- Mood_cluster1 %>% 
 ggplot( aes(x=mood_clust_fct, y=streams, fill = mood_clust_fct))+
   geom_boxplot(notch = T, alpha =.4, outlier.alpha = 2,
                outlier.size = .1, outlier.color = "grey")+
@@ -166,7 +164,8 @@ ggplot( aes(x=mood_clust_fct, y=streams, fill = mood_clust_fct))+
   scale_color_manual("Cluster:", values = I(cols))+
   scale_fill_manual("Cluster:", values = I(cols)) +
   ggtitle(label="Per Country")+
-  labs(x="\nMood Clusters per DACH Country", y="Median Stream Counts\n(Log-scaled Axis with base 10)\n")+
+  labs(x="\nMood Clusters per DACH Country",
+       y="Median Stream Counts\n(Log-scaled Axis with base 10)\n")+
   layout+
   theme(axis.text.x  = element_blank(),
         axis.ticks = element_blank())+
@@ -184,7 +183,8 @@ M2 <- Mood_cluster1%>%
   scale_y_log10(labels = label_number_si(accuracy = NULL))+
   scale_color_manual("Cluster:", values = I(cols))+
   scale_fill_manual("Cluster:", values = I(cols)) +
-  labs(x="\nMood Clusters across all DACH Countries", y="Median Stream Counts\n(Log-scaled Axis with base 10)\n")+
+  labs(x="\nMood Clusters across all DACH Countries",
+       y="Median Stream Counts\n(Log-scaled Axis with base 10)\n")+
   ggtitle(label="Overall")+
   layout+
   theme(axis.text.x  = element_blank(),
