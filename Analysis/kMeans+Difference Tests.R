@@ -222,9 +222,9 @@ Mood_cluster1 %>%
   wilcox_effsize(streams ~ Pandemic)
   
 
-# ################# #
-# Pers DACH country #
-# ################# #
+# ################ #
+# Per DACH country #
+# ################ #
 
 # Dunn tests with holm correction per country for each cluster and both periods
 Mood_cluster1 %>% 
