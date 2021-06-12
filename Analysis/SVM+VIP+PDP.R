@@ -1,12 +1,17 @@
 
-library(parallel)
-library(parallelMap)
+remove(list = ls(all = T)); gc(T,T,T)
 
-library(vip)
-library(ModelMetrics)
+################
+### Packages ###
+################
 
+if (!require(pacman))
+  install.packages("pacman", repo = "http://cran.us.r-project.org")
 
-library(pdp)
+pacman::p_load("tidyverse", "magrittr","car", "lubridate", "scales", "ggbeeswarm",
+               "ggpubr", "GGally","caret", "e1071", "factoextra", 
+               "RColorBrewer","rgl", "rstatix", "cluster", "parallel",
+               "parallelMap", "vip","ModelMetrics","pdp")
 
 
 # Selecting model variables
