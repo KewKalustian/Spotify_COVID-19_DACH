@@ -123,3 +123,73 @@ scatter3d(x = Dim.1, y = Dim.2, z = Dim.3,
           ellipsoid.alpha = 0.001, axis.col = c("black", "black", "black"))
 
 text3d(x = -0.5,y =  c(.53, .63, .73, .83), z = 1, names(temp), col = I(cols))
+
+# ########################## #
+# Plots and Difference Tests #
+# ########################## #
+
+Mood_cluster <- df_ml %>% 
+  group_by(country, track_id, stream_count, Pandemic) %>% 
+  mutate(mood_clust_fct = 
+         recode_factor(mood_clust_fct,  '1' = "Moderate Arousal-Potential neg Emotionality major" , #rot
+                                        '2' = "Higher Arousal-Potential pos Emotionality minor", #lila
+                                        '3' = "Higher Arousal-Potential pos Emotionality major", #gelb
+                                        '4' = "Moderate Arousal-Potential neg Emotionality minor")) 
+
+
+  Mood_cluster1<- Mood_cluster %>% 
+  group_by(track_id) %>% 
+  dplyr::select(country, Pandemic, track_id, stream_count, mood_clust_fct) %>% 
+  summarize(track_id = track_id[1],
+            country =country[1],
+            Pandemic=Pandemic[1],
+            mood_clust_fct = mood_clust_fct[1],
+            streams = median(stream_count)) %>% 
+  arrange(desc(streams))
+  
+  
+
+M1 <- Mood_cluster1%>% 
+#group_by(mood_clust_fct, country, Pandemic, track_id) %>% 
+#summarize(streams = median(stream_count)) %>% 
+ggplot( aes(x=mood_clust_fct, y=streams, fill = mood_clust_fct))+
+  geom_boxplot(notch = T, alpha =.4, outlier.alpha = 2,
+               outlier.size = .1, outlier.color = "grey")+
+  geom_violin(width = 0.4, aes(color=mood_clust_fct), alpha=.2)+
+  ggbeeswarm::geom_quasirandom(shape = 21,size=1, dodge.width = .5, color = "black",
+                               alpha=.2,show.legend = F)+
+  scale_y_log10(labels = label_number_si(accuracy = NULL))+
+  scale_color_manual("Cluster:", values = I(cols))+
+  scale_fill_manual("Cluster:", values = I(cols)) +
+  ggtitle(label="Per Country")+
+  labs(x="\nMood Clusters per DACH Country", y="Median Stream Counts\n(Log-scaled Axis with base 10)\n")+
+  layout+
+  theme(axis.text.x  = element_blank(),
+        axis.ticks = element_blank())+
+  facet_grid(country~Pandemic, scales = "free")
+
+
+
+M2 <- Mood_cluster1%>% 
+  ggplot( aes(x=mood_clust_fct, y=streams, fill = mood_clust_fct))+
+  geom_boxplot(notch = T, alpha =.4, outlier.alpha = 2,
+               outlier.size = .1, outlier.color = "grey")+
+  geom_violin(width = 0.5, aes(color=mood_clust_fct), alpha=.2)+
+  ggbeeswarm::geom_quasirandom(shape = 21,size=2, dodge.width = .5, color = "black",
+                               alpha=.3,show.legend = F)+
+  scale_y_log10(labels = label_number_si(accuracy = NULL))+
+  scale_color_manual("Cluster:", values = I(cols))+
+  scale_fill_manual("Cluster:", values = I(cols)) +
+  labs(x="\nMood Clusters across all DACH Countries", y="Median Stream Counts\n(Log-scaled Axis with base 10)\n")+
+  ggtitle(label="Overall")+
+  layout+
+  theme(axis.text.x  = element_blank(),
+        axis.ticks = element_blank())+
+  facet_grid(~Pandemic, scales = "free")
+
+
+ggarrange( M1, M2, common.legend = T)
+
+  
+  
+  
