@@ -127,10 +127,6 @@ end_time_2 <- Sys.time()
 # Variable Importance #
 # ################### #
 
-
-library(vip)
-library(ModelMetrics)
-
 # Pred/classification function
 prob_no_pan <- function(object, newdata) {
   res <-as.vector(predict(object, newdata = newdata))
@@ -152,6 +148,17 @@ imp <-vip(svm_fit,
 imp_values <- imp$data
 
 # Plotting
+
+# Global Plotting Layout
+layout <- theme_bw(base_size = 14) +
+  theme(axis.title.y = element_text(size = 14),
+        axis.title.x = element_text(size = 14),
+        legend.position = "top",
+        legend.key = element_rect(color = "white"),
+        legend.background = element_rect(fill = "white",
+                                         linetype = "solid",
+                                         color = "grey90"),
+        plot.margin = unit(c(.66, .33, .66, .66), "cm"))
 
 ggplot(data= imp_values, aes( x = reorder(Variable, Importance), y = Importance,
                               label = round(Importance,3) )) +
