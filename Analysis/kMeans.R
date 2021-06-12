@@ -50,11 +50,6 @@ fviz_gap_stat(gap_stat,
                                          color = "#bdbdbd"),
         plot.margin = unit(c(.33,.33,.66,.33), "cm"))
 
-# Saving the output (wide format) 
-ggsave("Gap_stat.png", path = "~/Desktop/R_Projects/Spotify_DACH/Plots",
-       width = 12.8, height = 7.2, dpi = 320)
-
-
 # 4 Clusters seem reasonable.
 
 # k-means clustering
