@@ -1,4 +1,16 @@
 
+remove(list = ls(all = T)); gc(T,T,T)
+
+################
+### Packages ###
+################
+
+if (!require(pacman))
+  install.packages("pacman", repo = "http://cran.us.r-project.org")
+
+pacman::p_load("tidyverse", "magrittr","car", "lubridate", "scales",
+               "ggpubr", "GGally","caret", "e1071", "factoextra", 
+               "RColorBrewer","rgl")
 ###############
 ### K-means ###
 ###############
@@ -6,7 +18,6 @@
 ### Finding K
 
 df_ml_km_k <- df_ml %>% 
-  #filter(mode ==1) %>% 
   group_by(track_id, title, mode) %>% 
   dplyr::select( danceability, energy, loudness_rescaled, valence, 
                  tempo_rescaled) %>% 
