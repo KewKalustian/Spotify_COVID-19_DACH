@@ -10,7 +10,7 @@ if (!require(pacman))
 
 pacman::p_load("tidyverse", "magrittr","car", "lubridate", "scales", "ggbeeswarm",
                "ggpubr", "GGally","caret", "e1071", "factoextra", 
-               "RColorBrewer","rgl", "rstatix")
+               "RColorBrewer","rgl", "rstatix", "cluster")
 ###############
 ### K-means ###
 ###############
