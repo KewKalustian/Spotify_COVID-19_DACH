@@ -10,7 +10,7 @@ if (!require(pacman))
 
 pacman::p_load("tidyverse", "magrittr","car", "lubridate", "scales",
                "ggpubr", "GGally","caret", "e1071", "factoextra", 
-               "RColorBrewer","rgl")
+               "RColorBrewer","rgl", "rstatix")
 ###############
 ### K-means ###
 ###############
@@ -190,6 +190,54 @@ M2 <- Mood_cluster1%>%
 
 ggarrange( M1, M2, common.legend = T)
 
+# ################ #
+# Difference Tests #
+# ################ #
+
+# Summary stats across all countries for each cluster and both periods
+Mood_cluster1 %>% 
+ group_by(mood_clust_fct, Pandemic) %>%
+ get_summary_stats(type = "median") 
+
+
+# Summary stats per country for each cluster and both periods
+Mood_cluster1 %>% 
+ group_by(mood_clust_fct, Pandemic, country) %>%
+ get_summary_stats(type = "median") 
+
+# ###################### #
+# Overall DACH countries #
+# ###################### #
+
+# Dunn tests with holm correction across all countries for each cluster and both periods
+Mood_cluster1 %>% 
+  group_by(mood_clust_fct) %>%
+  dunn_test(streams ~ Pandemic) %>%
+  adjust_pvalue(method = "holm") 
+
+# Effect sizes for the differences from above by using the z-values of the dunn 
+# tests via rstatix::wilcox_effsize
+Mood_cluster1 %>% 
+  group_by(mood_clust_fct) %>%
+  wilcox_effsize(streams ~ Pandemic)
+  
+
+# ################# #
+# Pers DACH country #
+# ################# #
+
+# Dunn tests with holm correction per country for each cluster and both periods
+Mood_cluster1 %>% 
+  group_by(mood_clust_fct, country) %>%
+  dunn_test(streams ~ Pandemic) %>%
+  adjust_pvalue(method = "holm") 
+
+# Effect sizes for the differences from above by using the z-values of the dunn 
+# tests via rstatix::wilcox_effsize
+Mood_cluster1 %>% 
+  group_by(mood_clust_fct, country) %>%
+  wilcox_effsize(streams ~ Pandemic)
+  
   
   
   
