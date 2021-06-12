@@ -8,7 +8,7 @@ remove(list = ls(all = T)); gc(T,T,T)
 if (!require(pacman))
   install.packages("pacman", repo = "http://cran.us.r-project.org")
 
-pacman::p_load("tidyverse", "magrittr","car", "lubridate", "scales",
+pacman::p_load("tidyverse", "magrittr","car", "lubridate", "scales", "ggbeeswarm",
                "ggpubr", "GGally","caret", "e1071", "factoextra", 
                "RColorBrewer","rgl", "rstatix")
 ###############
@@ -156,7 +156,7 @@ ggplot( aes(x=mood_clust_fct, y=streams, fill = mood_clust_fct))+
   geom_boxplot(notch = T, alpha =.4, outlier.alpha = 2,
                outlier.size = .1, outlier.color = "grey")+
   geom_violin(width = 0.4, aes(color=mood_clust_fct), alpha=.2)+
-  ggbeeswarm::geom_quasirandom(shape = 21,size=1, dodge.width = .5, color = "black",
+  geom_quasirandom(shape = 21,size=1, dodge.width = .5, color = "black",
                                alpha=.2,show.legend = F)+
   scale_y_log10(labels = label_number_si(accuracy = NULL))+
   scale_color_manual("Cluster:", values = I(cols))+
@@ -175,7 +175,7 @@ M2 <- Mood_cluster1%>%
   geom_boxplot(notch = T, alpha =.4, outlier.alpha = 2,
                outlier.size = .1, outlier.color = "grey")+
   geom_violin(width = 0.5, aes(color=mood_clust_fct), alpha=.2)+
-  ggbeeswarm::geom_quasirandom(shape = 21,size=2, dodge.width = .5, color = "black",
+  geom_quasirandom(shape = 21,size=2, dodge.width = .5, color = "black",
                                alpha=.3,show.legend = F)+
   scale_y_log10(labels = label_number_si(accuracy = NULL))+
   scale_color_manual("Cluster:", values = I(cols))+
