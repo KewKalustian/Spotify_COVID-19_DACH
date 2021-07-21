@@ -92,7 +92,7 @@ df_ml %<>%
   mutate( Pandemic = factor(Pandemic, labels = c( "No_Pandemic", "Pandemic"), 
                             ordered = T))
 
-
+write(df_ml, "df_ml.csv")
 
 ################################
 ### Histogram | Distribution ###
