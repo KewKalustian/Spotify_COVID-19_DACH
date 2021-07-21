@@ -17,7 +17,7 @@ pacman::p_load("tidyverse", "magrittr","car", "lubridate", "scales", "ggbeeswarm
 
 # importing the data
 
-df_ml <- read_csv("df_ml.csv")
+df_ml <- read_csv("df_ml.csv",  col_types = cols(X1 = col_skip())
 
 ### Finding K
 
@@ -111,11 +111,6 @@ Dim.2 <- ind_coord$Dim.2
 Dim.3 <- ind_coord$Dim.3
 
 
-temp <- data.frame(`Moderate Arousal-Potential neg Emotionality major` = '1',
-                   `Higher Arousal-Potential pos Emotionality minor`  = '2', 
-                   `Higher Arousal-Potential pos Emotionality major`  = '3',
-                   `Moderate Arousal-Potential neg Emotionality minor`  = '4')    
-
 # Adding the clusters to the original data set 
 
 df_ml$mood_clust_fct <- as.factor(km$clust)
@@ -123,30 +118,47 @@ df_ml$mood_clust_fct <- as.factor(km$clust)
 # Exporting
 
 write_csv(df_ml, "df_ml_full.csv")
+                  
+# cluster labels
+Mood_cluster <- df_ml %>% 
+  group_by(country, track_id, stream_count, Pandemic) %>% 
+  mutate(mood_clust_fct = 
+           recode_factor(mood_clust_fct, '1' = "Moderate Arousal-Potential neg Emotionality major", 
+                                         '2' = "Higher Arousal-Potential pos Emotionality minor", 
+                                         '3' = "Higher Arousal-Potential pos Emotionality major", 
+                                         '4' = "Moderate Arousal-Potential neg Emotionality minor")) 
 
 # color palette
 
 cols <- c("#3288BD", "#F46D43", "darkgreen" , "#5E4FA2")
 
-scatter3d(x = Dim.1, y = Dim.2, z = Dim.3, 
-          groups = df_ml$mood_clust_fct , surface = F, 
-          grid = T, surface.col = I(cols), ellipsoid = T,  axis.scales = F,
-          ellipsoid.alpha = 0.001, axis.col = c("black", "black", "black"))
+# 3D Plot
 
-text3d(x = -0.5,y =  c(.53, .63, .73, .83), z = 1, names(temp), col = I(cols))
+scatter3d(x = Dim.1, y = Dim.2, z = Dim.3, 
+         # xlab = "Dim.1 (33%)", ylab = "Dim.2 (20%)",
+         # zlab = "Dim.3 (16.6%)",
+          groups = as.factor(df_ml$mood_clust_fct) , surface = F, 
+          grid = T, surface.col = I(cols), ellipsoid = T, axis.scales = F , 
+          axis.ticks = F, 
+          ellipsoid.alpha = 0.0, level = .6827, 
+          axis.col = c("black", "black", "black"))
+# perspective
+view3d( theta = -75, phi = 0) # zoom = .815
+
+# windowsize (width & heigt in px)
+par3d(windowRect=c(0,0,1920,1080))
+#material3d(point_antialias = T)
+Sys.sleep(1)
+
+# legend
+legend3d("topright", legend = levels(Mood_cluster$mood_clust_fct), col=cols, pch=16)
+#postscript()
+
+dev.off()
 
 # ########################## #
 # Plots and Difference Tests #
 # ########################## #
-
-Mood_cluster <- df_ml %>% 
-  group_by(country, track_id, stream_count, Pandemic) %>% 
-  mutate(mood_clust_fct = 
-         recode_factor(mood_clust_fct,  '1' = "Moderate Arousal-Potential neg Emotionality major" ,
-                                        '2' = "Higher Arousal-Potential pos Emotionality minor",
-                                        '3' = "Higher Arousal-Potential pos Emotionality major",
-                                        '4' = "Moderate Arousal-Potential neg Emotionality minor")) 
-
 
   Mood_cluster1<- Mood_cluster %>% 
   group_by(track_id) %>% 
