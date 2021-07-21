@@ -91,8 +91,8 @@ df_ml$Pandemic <- ifelse(df_ml$date > as.Date("2020-03-10"), "Pandemic",
 df_ml %<>% 
   mutate( Pandemic = factor(Pandemic, labels = c( "No_Pandemic", "Pandemic"), 
                             ordered = T))
-
-write(df_ml, "df_ml.csv")
+# exporting the data
+write_csv(df_ml, "df_ml.csv")
 
 ################################
 ### Histogram | Distribution ###
