@@ -14,9 +14,14 @@ pacman::p_load("tidyverse", "magrittr","car", "lubridate", "scales", "ggbeeswarm
                "parallelMap", "vip","ModelMetrics","pdp")
 
 
+
+df_ml_full <- read.csv("df_ml_full.csv") 
+
+
+
 # Selecting model variables
 
-mod_df <- df_ml  %>% 
+mod_df <- df_ml_full  %>% 
   dplyr::select(Pandemic,
          country, 
          track_id, 
