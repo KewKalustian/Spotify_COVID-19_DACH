@@ -116,10 +116,24 @@ print(process)
 Feats_id <- Feats %>% 
   rename(track_id = id)
 
+# Repeat this whole procedure for each country and adjust the object name 
+# "Full_charts_DE" with "…_AT" and "…_CH" accordingly. Once the features 
+# for all countries are loaded,
+# they can be merged in the same way.
 
-Full_charts <- merge(DE_Tracks, Feats_id , by= "track_id", all = T )%>% 
+# Only for Germany:
+Full_charts_DE <- merge(DE_Tracks, Feats_id , by= "track_id", all = T )%>% 
   group_by(date, chart_position) %>% 
   mutate(date = as.Date(as.character(date), "%m/%d/%Y")) %>% 
   arrange(date, chart_position)
 
-write.csv(Full_charts , "Full Charts.csv")
+write.csv(Full_charts_DE , "Full_Charts_DE.csv")
+
+# To combine all charts, once they have been loaded/scraped, the rbind-
+# funciton will do the job:
+# Not run – EXAMPLE:
+
+# DACH_complete <– rbind(Full_charts_DE, Full_charts_AT, Full_charts_CH)
+# write.csv(DACH_complete, "DACH_complete.csv")
+
+
