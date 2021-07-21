@@ -200,7 +200,7 @@ ggplot(data = pd_values, aes(reorder(mood_clust_fct, yhat), yhat,
                              "\nModerate Arousal-Potential\nneg Emotionality (minor)", 
                              "\nHigher Arousal-Potential\npos Emotionality (minor)", 
                              "\nModerate Arousal-Potential\nneg Emotionality (major)"))+
-  labs(x="\nMood Clusters", y="Average Probabilities\n")+
+  labs(x="\nMood Clusters", y="Estimated Probabilities\n")+
   coord_flip()+
   layout
 
