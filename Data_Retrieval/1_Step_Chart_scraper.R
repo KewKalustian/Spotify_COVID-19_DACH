@@ -48,6 +48,12 @@ url <- "https://spotifycharts.com/regional/de/daily/"
 streaming_period <- seq(as.Date("2020/03/11"), as.Date("2020/06/14"),
                         by = "day")
 
+# For 2019: Uncomment this object.
+#
+# streaming_period <- seq(as.Date("2019/03/11"), as.Date("2019/06/14"),
+#                        by = "day")
+
+
 # Next, we write a generic function that combines or, respectively, concatenates 
 # the URLs (for the entire period) by taking the permanent link from above and a 
 # blank argument (x) as another argument to which the URL should refer 
@@ -127,7 +133,8 @@ init_time <- Sys.time()
 # The actual process of web scraping: Applying the spotifyR_scrapeR-function
 # to the object of that definitive URLs for each list element. That is, the just 
 # created spotifyR_scrapeR-function retrieves from each URL the desired 
-# information.
+# information. (Adjust the name of the data.frame for the other countries, i.e,
+# "AT_Tracks", "CH_Tracks").
 
 DE_Tracks <- map_df(all_urls, spotifyR_scrapeR) 
 
@@ -140,5 +147,5 @@ end_time <- Sys.time()
 process_time <- end_time - init_time
 print(process_time)
 
-# Exporting and saving the retrieved datatable as .csv-file.
+# Exporting and saving the retrieved charts for Germany as .csv-file.
 write_csv(DE_Tracks, "DE_Tracks.csv")
