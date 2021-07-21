@@ -9,8 +9,8 @@ if (!require(pacman))
   install.packages("pacman", repo = "http://cran.us.r-project.org")
 
 pacman::p_load("tidyverse", "magrittr","car", "lubridate", "scales", "ggbeeswarm",
-               "ggpubr", "GGally","caret", "e1071", "factoextra", 
-               "RColorBrewer","rgl", "rstatix", "cluster", "parallel",
+               "ggpubr", "caret", "e1071", "factoextra", 
+               "rgl", "rstatix", "cluster", "parallel",
                "parallelMap", "vip","ModelMetrics","pdp")
 
 
