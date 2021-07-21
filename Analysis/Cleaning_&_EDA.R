@@ -50,7 +50,7 @@ df_ml <- DACH_charts %>%
   dplyr::select(c(country, date, track_id, title, artist, stream_count, 
                   chart_position, danceability, energy, loudness, acousticness,
                   instrumentalness, speechiness, liveness, valence, duration_ms,
-                  tempo, mode, key, time_signature)) %>% 
+                  tempo, mode)) %>% 
   
   # Re-scaling some features to have all song-intrinsic features on the same 
   # scale.
@@ -74,9 +74,8 @@ df_ml <- DACH_charts %>%
          
          tempo_rescaled =  tempo/1000,
          
-         key_fct = as.factor(key),
          
-         mode_fct = as.factor(mode))# ,
+         mode_fct = as.factor(mode))
 
 
 str(df_ml) 
