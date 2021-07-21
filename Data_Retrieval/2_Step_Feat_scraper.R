@@ -142,13 +142,13 @@ Full_charts_DE <- merge(DE_Tracks, Feats_id , by= "track_id", all = T )%>%
   mutate(date = as.Date(as.character(date), "%m/%d/%Y")) %>% 
   arrange(date, chart_position)
 
-write.csv(Full_charts_DE , "Full_Charts_DE.csv")
+write_csv(Full_charts_DE , "Full_Charts_DE.csv")
 
 # To combine all charts, once they have been loaded/scraped, the rbind-
 # funciton will do the job:
 # Not run – EXAMPLE:
 
 # DACH_complete <– rbind(Full_charts_DE, Full_charts_AT, Full_charts_CH)
-# write.csv(DACH_complete, "DACH_complete.csv")
+# write_csv(DACH_complete, "DACH_complete.csv")
 
 
