@@ -8,10 +8,7 @@ if (!require(pacman))
   install.packages("pacman", repo = "http://cran.us.r-project.org")
 
 pacman::p_load("tidyverse", "magrittr","car", "lubridate", "scales",
-               "ggpubr", "GGally","caret", "e1071", "factoextra", 
-               "RColorBrewer","rgl")
-
-pacman::p_load_gh("spotifyr")
+               "ggpubr", "factoextra")
 
 
 ############
