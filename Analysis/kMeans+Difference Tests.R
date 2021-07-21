@@ -118,7 +118,7 @@ df_ml$mood_clust_fct <- as.factor(km$clust)
 
 # Exporting
 
-write.csv(df_ml, "df_ml_full.csv")
+write_csv(df_ml, "df_ml_full.csv")
 
 # color palette
 
