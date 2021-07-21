@@ -15,6 +15,10 @@ pacman::p_load("tidyverse", "magrittr","car", "lubridate", "scales", "ggbeeswarm
 ### K-means ###
 ###############
 
+# importing the data
+
+df_ml <- read_csv("df_ml.csv")
+
 ### Finding K
 
 df_ml_km_k <- df_ml %>% 
