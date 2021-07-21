@@ -4,34 +4,12 @@ remove(list = ls(all = T)); gc(T,T,T)
 ### Packages ###
 ################
 
-# Generating a neat function to load all desired packages (x).
+if (!require(pacman))
+  install.packages("pacman", repo = "http://cran.us.r-project.org")
 
-load_packages <- function(x){
-  
-  # Object which contains the desired packages (x) as long as they are not already 
-  # installed. 
-  
-  inst.packages <- x[!x %in% installed.packages()]
-  
-  # Generating a for-loop.
-  
-  for (i in inst.packages) {install.packages(i, dependencies = T)}
-  
-  sapply(x, require, character = T)}
+pacman::p_load("tidyverse", "magrittr", "rvest", "lubridate")
 
-# Finally, using the just generated function to load and/or install the 
-# following desired packages.
-
-desired.packages <- c(# Tidy coding paradigm
-                      "tidyverse", "magrittr", 
-                      # Data import
-                      "readr", "rvest", "spotifyr",
-                      # Date specific data wrangling
-                      "lubridate")
-
-
-load_packages(desired.packages) 
-
+pacman::p_load_gh("spotifyr")
 
 ########################
 ### Loading the Data ###
