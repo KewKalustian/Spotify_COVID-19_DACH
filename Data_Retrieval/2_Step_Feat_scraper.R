@@ -33,12 +33,27 @@ desired.packages <- c(# Tidy coding paradigm
 load_packages(desired.packages) 
 
 
+########################
+### Loading the Data ###
+########################
+
+# For Germany:
+DE_Tracks <– read.csv("DE_Tracks.csv")
+
+# For Austria:
+# AT_Tracks <– read.csv("AT_Tracks.csv")
+
+# For Switzerland:
+# CH_Tracks <– read.csv("CH_Tracks.csv")
+
+
 ################
 ### Scraping ###
 ################
 
 # Extracting the Spotify IDs from a given data.frame (e.g., "DE_Tracks")
 # to retrieve the audio features.
+
 id <- unique(DE_Tracks$track_id)
 
 set.seed(1, sample.kind = "Rounding")
