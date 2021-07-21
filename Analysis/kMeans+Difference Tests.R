@@ -116,6 +116,11 @@ temp <- data.frame(`Moderate Arousal-Potential neg Emotionality major` = '1',
 
 df_ml$mood_clust_fct <- as.factor(km$clust)
 
+# Exporting
+
+write.csv(df_ml, "df_ml_full.csv")
+
+# color palette
 
 cols <- c("#3288BD", "#F46D43", "darkgreen" , "#5E4FA2")
 
