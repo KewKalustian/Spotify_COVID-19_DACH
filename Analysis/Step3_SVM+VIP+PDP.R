@@ -19,8 +19,6 @@ pacman::p_load("tidyverse", "magrittr","car", "lubridate", "scales", "ggbeeswarm
 
 df_ml_full <- read_csv("df_ml_full.csv") 
 
-
-
 # Selecting model variables
 
 mod_df <- df_ml_full  %>% 
