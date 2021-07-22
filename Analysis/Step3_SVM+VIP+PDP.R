@@ -14,7 +14,8 @@ pacman::p_load("tidyverse", "magrittr","car", "lubridate", "scales", "ggbeeswarm
                "parallelMap", "vip","ModelMetrics","pdp")
 
 
-# Importing data
+# importing the data that has previously been saved in the working directory 
+# (cf. code/script: "Analysis_Step2_kMeans+Difference Tests.")
 
 df_ml_full <- read_csv("df_ml_full.csv") 
 
@@ -154,6 +155,10 @@ imp <-vip(svm_fit,
 imp_values <- imp$data
 
 # Plotting
+
+# color palette
+
+cols <- c("#3288BD", "#F46D43", "darkgreen" , "#5E4FA2")
 
 # Global Plotting Layout
 layout <- theme_bw(base_size = 14) +
