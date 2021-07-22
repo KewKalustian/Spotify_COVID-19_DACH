@@ -16,7 +16,7 @@ pacman::p_load("tidyverse", "magrittr","car", "lubridate", "scales",
 ############
 
 
-DACH_charts <-  read_csv("DACH_complete.csv", 
+DACH_charts <-  read_csv("https://raw.githubusercontent.com/KewKalustian/Spotify_COVID-19_DACH/main/DACH_complete.csv", 
                          col_types = cols(X1 = col_skip(), 
                                           uri = col_skip(), 
                                           track_href = col_skip(), 
