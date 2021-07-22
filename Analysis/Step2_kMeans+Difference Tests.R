@@ -116,7 +116,13 @@ Dim.3 <- ind_coord$Dim.3
 
 df_ml$mood_clust_fct <- as.factor(km$clust)
 
-# Exporting
+
+
+# ##################################################### #
+# exporting the data. This dataset will be used ####### #
+# in the code/script: "Analysis_Step3_SVM+VIP+PDP." ### #
+# So it is a good idea to run all scripts of this repo# #
+# in the same working directory.####################### #
 
 write_csv(df_ml, "df_ml_full.csv")
 
