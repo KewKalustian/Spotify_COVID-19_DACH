@@ -32,7 +32,9 @@ mod_df <- df_ml_full  %>%
          instrumentalness,
          liveness,
          duration_ms_rescaled, 
-         mood_clust_fct) 
+         mood_clust_fct) %>%
+  mutate(Pandemic = factor(Pandemic),
+         country = factor(country))
 
 str(mod_df)
 
