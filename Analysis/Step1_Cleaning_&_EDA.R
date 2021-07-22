@@ -88,7 +88,12 @@ df_ml$Pandemic <- ifelse(df_ml$date > as.Date("2020-03-10"), "Pandemic",
 df_ml %<>% 
   mutate( Pandemic = factor(Pandemic, labels = c( "No_Pandemic", "Pandemic"), 
                             ordered = T))
-# exporting the data
+
+################################################################## #
+# exporting the data. This dataset will be used ################## #
+# in the code/script: "Analysis_Step2_kMeans+Difference Tests" ### #
+# So it is a good idea to run all scripts of this repo in the same #
+# working directory.############################################## #
 write_csv(df_ml, "df_ml.csv")
 
 ################################
