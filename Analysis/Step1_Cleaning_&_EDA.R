@@ -21,6 +21,7 @@ DACH_charts <-  read_csv("https://raw.githubusercontent.com/KewKalustian/Spotify
                                           uri = col_skip(), 
                                           track_href = col_skip(), 
                                           analysis_url = col_skip()))
+
 View(DACH_charts)
 
 # Data prep.
@@ -94,6 +95,7 @@ df_ml %<>%
 # in the code/script: "Analysis_Step2_kMeans+Difference Tests" ### #
 # So it is a good idea to run all scripts of this repo in the same #
 # working directory.############################################## #
+
 write_csv(df_ml, "df_ml.csv")
 
 ################################
