@@ -1,8 +1,8 @@
 # Spotify_COVID-19_DACH
 
-Repository for the Article
+Repository for the Article:
 
-**“Evacuate the Dancefloor”: Exploring and Classifying Spotify Music Listening Before and During the COVID-19 Pandemic in DACH Countries**
+## “Evacuate the Dancefloor”: Exploring and Classifying Spotify Music Listening Before and During the COVID-19 Pandemic in DACH Countries
 
 ### Abstract
 
