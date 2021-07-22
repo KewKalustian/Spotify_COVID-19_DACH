@@ -83,7 +83,7 @@ start_time <- Sys.time()
 parallelStartSocket(cpus = detectCores())
 
 set.seed(42, sample.kind = "Rounding")
-hyperparam <-  tune(svm,Pandemic ~ ., 
+hyperparam <-  tune(svm, Pandemic ~ ., 
                     data = train[-3], 
                     kernel = "radial", ranges = list(cost = 10^(-1:4), 
                                                      gamma = c(0.5,1:5)), 
@@ -105,8 +105,8 @@ set.seed(1, sample.kind = "Rounding")
 
 svm_fit <-  svm(Pandemic ~ ., DACH_train[,-3],
                 kernel = "radial",      # see summary(hyperparam)
-                cost = 10,            # see summary(hyperparam)
-                gamma = 2,            # see summary(hyperparam)
+                cost = 10,              # see summary(hyperparam)
+                gamma = 2,              # see summary(hyperparam)
                 scale = T,
                 probability = T)
 
@@ -124,8 +124,7 @@ prd <- predict(svm_fit, DACH_test[,-3], probability = T)
 
 head(attr(prd, "probabilities"))
 
-
-data$table <- caret::confusionMatrix(prd, DACH_test$Pandemic, mode = "prec_recall")
+caret::confusionMatrix(prd, DACH_test$Pandemic, mode = "prec_recall")
 
 end_time_2 <- Sys.time()
 
