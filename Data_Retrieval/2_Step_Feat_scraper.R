@@ -7,9 +7,7 @@ remove(list = ls(all = T)); gc(T,T,T)
 if (!require(pacman))
   install.packages("pacman", repo = "http://cran.us.r-project.org")
 
-pacman::p_load("tidyverse", "magrittr", "rvest", "lubridate")
-
-pacman::p_load_gh("spotifyr")
+pacman::p_load("tidyverse", "magrittr", "rvest", "lubridate", "spotifyr")
 
 ########################
 ### Loading the Data ###
